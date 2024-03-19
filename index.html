@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pf3-hppaper</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+
+    <!-- //구글폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- 구글폰트// -->
+    <!-- 프리텐다드 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <!--  -->
+    <!-- https://ionic.io/ionicons/v1 -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <!--  -->
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/ham.css">
+    <link rel="stylesheet" href="css/title.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/aside.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/response.css">
+    <!-- 제이쿼리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(
+            function(){
+                $("header .wrap ul.gnb li").hover(function(){
+                    $("header .wrap .sublist").addClass("show");
+                    $("header").addClass("white");
+                    $(this).toggleClass("listUp");
+                    $(this).siblings().removeClass("listUp");
+                });
+                $("header .wrap .sublist").mouseleave(function(){
+                    $(this).removeClass("show");
+                    $("header").removeClass("white");
+                });
+                $("section#news .wrap ul li").hover(function(){
+                    $(this).toggleClass("over");
+                    $(this).siblings().removeClass("over");
+                });
+                $("aside ul li:nth-child(1)").addClass("currentB");
+                $("aside ul li").click(function(){
+                    $(this).addClass("currentB");
+                    $(this).siblings().removeClass("currentB");
+                });
+                $("header .wrap .sublist div ul.useguide li").hover(function(){
+                    $(this).toggleClass("list");
+                    $(this).siblings().removeClass("list");
+                });
+                var headerH=$("header").height();
+        //스크롤 이벤트
+            //헤드
+            var headerH=$("header+#title").height();
+            $(window).scroll(function(){
+                if($(window).scrollTop()>$("header").height()){//윈도우에 scrollTop위치값이 ...보다 크다면
+                   $("header").addClass("back");
+                }else{
+                    $("header").removeClass("back");
+                }
+            });
+            //어사이드 도트 표시
+            //어사이드의 목록을 클릭하면 실행하시오.
+            $("aside ul li a").click(function(){
+                //클릭한 a에 클래스를 붙이시오.
+                $(this).addClass("active");
+                //클릭한 a가 아닌 다른 a의 클래스를 없애시오.(active)
+                $(this).parent().siblings().children("a").removeClass("active");
+                //a태그는 페이지 새로고침이 된다. 를 막는 코드
+                return false;
+            });
+            }
+            
+        );
+    </script>
+    <!-- 마우스휠 -->
+    <script type="text/javascript">
+        window.onload = function () {
+            var elm = ".box";
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel DOMMouseScroll", function (e) {
+                    e.preventDefault();
+                    var delta = 0;
+                    if (!event) event = window.event;
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta / 120;
+                        if (window.opera) delta = -delta;
+                    } 
+                    else if (event.detail)
+                        delta = -event.detail / 3;
+                    var moveTop = $(window).scrollTop();
+                    var elmSelecter = $(elm).eq(index);
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).next().offset().top;
+                            }catch(e){}
+                        }
+                    // 마우스휠을 아래에서 위로
+                    } else {
+                        if ($(elmSelecter).prev() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).prev().offset().top;
+                            }catch(e){}
+                        }
+                    }
+                     
+                    // 화면 이동 0.8초(800)
+                    $("html,body").stop().animate({
+                        scrollTop: moveTop + 'px'
+                    }, {
+                        duration: 800, complete: function () {
+                        }
+                    });
+                });
+            });
+            
+            $("main>section").unwrap();
+            $("section").css("height:100%","box-sizing:border-box");
+        }
+    </script>
+    <!-- 슬릭 -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.titleAni').slick({ //객체는 슬라이드 요소를 감싸고 있는 부모
+                infinite: true, //무한재생
+                slidesToShow: 1,//보여지는 갯수
+                slidesToScroll: 1, //자동재생(넘김) 여부
+                autoplay: true, //자동플레이 넘김 시간 설정
+                autoplaySpeed: 2000, //자동플레이
+                speed: 1000, //움직이는 시간
+                dots: true, //닷
+                arrows: true, //이동 화살표
+                fade: true //페이드
+            });
+            $('.slickarticle').slick({
+                infinite: true, //무한재생
+                slidesToShow: 1,//보여지는 갯수
+                slidesToScroll: 1, //자동재생(넘김) 여부
+                autoplay: true, //자동플레이 넘김 시간 설정
+                autoplaySpeed: 1500, //자동플레이
+                speed: 1000, //움직이는 시간
+                fade: true //페이드
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 상단영역 -->
+    <header>
+        <div class="wrap flex between">
+            <h1>
+                <a href="">HB PAPER</a>
+            </h1>
+            <ul class="gnb flex">
+                <li><a href="">회사소개</a></li>
+                <li><a href="">사업소개</a></li>
+                <li><a href="">제품소개</a></li>
+                <li><a href="">고객센터</a></li>
+            </ul>
+            <div class="sublist">
+                <div class="menu1">
+                    <h2 class="hide">회사소개</h2>
+                    <ul class="useguide">
+                        <li><a href="">HB PAPER 소개</a></li>
+                        <li><a href="">히스토리</a></li>
+                        <li><a href="">인증서 및 수상내역</a></li>
+                        <li><a href="">홍보자료</a></li>
+                    </ul>
+                </div>
+                <div class="menu2">
+                    <h2 class="hide">사업소개</h2>
+                    <ul class="useguide">
+                        <li><a href="">사업분야</a></li>
+                        <li><a href="">기술 및 설비</a></li>
+                    </ul>
+                </div>
+                <div class="menu3">
+                    <h2 class="hide">제품소개</h2>
+                    <ul class="useguide">
+                        <li><a href="">종이 봉투</a></li>
+                        <li><a href="">종이 쇼핑백</a></li>
+                        <li><a href="">종이 안전 봉투</a></li>
+                        <li><a href="">종이 식품 용기</a></li>
+                        <li><a href="">종이 테이프</a></li>
+                        <li><a href="">종이 완충재</a></li>
+                        <li><a href="">특수지</a></li>
+                    </ul>
+                </div>
+                <div class="menu4">
+                    <h2 class="hide">고객센터</h2>
+                    <ul class="useguide">
+                        <li><a href="">공지사항</a></li>
+                        <li><a href="">보도자료</a></li>
+                        <li><a href="">온라인문의</a></li>
+                        <li><a href="">찾아오시는 길</a></li>
+                    </ul>
+                </div>
+            </div>
+            <span class="lang">
+                <a href="">KOR</a>
+                <a href="">ENG</a>
+            </span>
+            <a href="" class="block ham hide">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </header>
+    <!-- 타이틀영역 -->
+    <div id="title" class="vh100 box">
+        <div class="wrap titleAni">
+            <div class="witem witem1 flex column align-center center">
+                <h2 class="h1">자연으로,<span class="block"></span> 스마트하게</h2>
+                <p class="h5">그 소중한 가치를 알기에 
+                    우리는 돌아가려고 합니다.</p>
+            </div>
+            <div class="witem witem2 flex column align-center center">
+                <h2 class="h1">HB PAPER</h2>
+                <p class="h5">자연의 선순환을 꿈꾸며 친환경 포장 문화를 만들어가는 기업</p>
+            </div>
+            <div class="witem witem3 flex column align-center center">
+                <h2 class="h1">ECO PACKAGING</h2>
+                <p class="h5">더 나은, 더 건강한 세상을 만들고자 하는 마음</p>
+            </div>
+        </div>
+    </div>
+    <!-- 메인영역 -->
+    <main>
+        <!-- promotion -->
+        <section id="promotion" class="vh100 box">
+            <div class="wrap flex column align-center center">
+                <h2 class="h5">PROMOTION VIDEO</h2>
+                <p class="h3">HB PAPER 기업 소개 영상을 확인해보세요. </p>
+                <iframe width="1520" height="551" src="https://www.youtube.com/embed/9HyfO_V5cLw" title="자연으로 스마트하게, HB PAPER 기업 소개 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </section>
+        <!-- business -->
+        <section id="business" class="vh100 box">
+            <div class="wrap flex column center">
+                <h2 class="h5">BUSINESS AREA</h2>
+                <p class="h3">PFAS Free, Repulpable, Compostable의 가치는<span class="block"></span>
+                    우리 HB PAPER가 나아가고자 하는 사업방향입니다. </p>
+                <ul class="flex between">
+                    <li>
+                        <a href="" class="block">
+                            <h3 class="h4">종이가공</h3>
+                            <p class="p">식품포장 · 테이크아웃 · 이커머스</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block">
+                            <h3 class="h4">특수지</h3>
+                            <p class="p">친환경 코팅 · 친환경 인쇄</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- products -->
+        <section id="products" class="vh100 box">
+            <div class="wrap flex column between">
+                <h2 class="hide">products</h2>
+                <ul class="flex">
+                    <li class="current"><a href="" class="block">종이 봉투</a></li>
+                    <li><a href="" class="block">종이 쇼핑백</a></li>
+                    <li><a href="" class="block">종이 안전 봉투</a></li>
+                    <li><a href="" class="block">종이 식품 용기</a></li>
+                    <li><a href="" class="block">종이 완충제</a></li>
+                    <li><a href="" class="block">특수지</a></li>
+                </ul>
+                <div class="slickarticle">
+                    <article>
+                        <h3 class="h2">종이 봉투</h3>
+                        <figure>
+                            <img src="img/paper_01.jpg" alt="종이봉투">
+                            <figcaption class="hide">종이봉투 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                            각대봉투, 새철봉투, 창봉투 등 고객의 요구사항에 맞는<span class="block"></span>
+                            다양한 종이봉투의 제작이 가능하며, 고품질의 크라프트 종이를<span class="block"></span>
+                            사용하여 강도가 우수합니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                    <article>
+                        <h3 class="h2">종이 쇼핑백</h3>
+                        <figure>
+                            <img src="img/paper_02.jpg" alt="종이 쇼핑백">
+                            <figcaption class="hide">종이 쇼핑백 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                            고품질의 크라프트 종이로 직접 생산하여 품질이 뛰어나고,<span class="block"></span>
+                            자체 보유한 최고급 인쇄기와 친환경 수성 잉크를 사용하여<span class="block"></span>
+                            고해상도 · 고품질의 인쇄가 가능합니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                    <article>
+                        <h3 class="h2">종이 안전 봉투</h3>
+                        <figure>
+                            <img src="img/paper_03.jpg" alt="종이 안전 봉투">
+                            <figcaption class="hide">종이 안전 봉투 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                            친환경 종이로 만든 허니콤 완충재를 적용한 브라운 메일러는<span class="block"></span>
+                            기존 플라스틱 에어캡을 대체하여 제품을 안전하게 보호하고,<span class="block"></span>
+                            친환경 수성 잉크를 사용한 고품질의 인쇄가 가능합니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                    <article>
+                        <h3 class="h2">종이 식품 용기</h3>
+                        <figure>
+                            <img src="img/paper_04.jpg" alt="종이 식품 용기">
+                            <figcaption class="hide">종이 식품 용기 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                           자체개발한 PFAS free 소재의 수용성 코팅을 적용한<span class="block"></span>
+                           다양한 형태의 종이식품용기는 코팅 마감에 균열이 없어<span class="block"></span>
+                           어떠한 식품도 안전하게 포장할 수 있습니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                    <article>
+                        <h3 class="h2">종이 테이프</h3>
+                        <figure>
+                            <img src="img/paper_05.jpg" alt="종이 테이프">
+                            <figcaption class="hide">종이 테이프 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                            천연 성분으로 만들어 인체에 무해하고<span class="block"></span>
+                            믿을 수 있는 품질의 종이 테이프는<span class="block"></span>
+                            편리하게 사용할 수 있으며 강한 접착력을 자랑합니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                    <article>
+                        <h3 class="h2">종이 완충제</h3>
+                        <figure>
+                            <img src="img/paper_06.jpg" alt="종이 완충제">
+                            <figcaption class="hide">종이 완충제 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                            기존 플라스틱 에어캡을 대체하는<span class="block"></span>
+                            뛰어난 완충력의 친환경 종이 완충재로,<span class="block"></span>
+                            상품의 가치를 더해주고 깨지기 쉬운<span class="block"></span>
+                            다양한 제품을 보호해줍니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                    <article>
+                        <h3 class="h2">특수지</h3>
+                        <figure>
+                            <img src="img/paper_07.jpg" alt="특수지">
+                            <figcaption class="hide">특수지 적용사례</figcaption>
+                        </figure>
+                        <p class="p">
+                            자체개발한 수용성 코팅을 적용한 친환경 종이 코팅지로,<span class="block"></span>
+                            종이의 재활용과 Repulp가 가능하며, FDA 기준에 부합하여<span class="block"></span>
+                            음식물이 닿아도 인체에 무해합니다.
+                        </p>
+                        <a href="" class="block">MORE VIEW</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- news -->
+        <section id="news" class="vh100 box">
+            <div class="wrap grid">
+                <h2 class="h5">NEWS & NOTICE</h2>
+                <h3 class="h2">HB PAPER의<span class="block"></span>
+                    새로운 순간들 </h3>
+                <p class="p">HB PAPER의 다양한 소식들을 확인해보세요.</p>
+                <ul class="grid">
+                    <li>
+                        <a href="" class="block p">
+                            <span>보도자료</span>
+                            에이치비페이퍼, 코엑스 푸드위크 2023서 종이 포장재 알려... “저농도 수용액에 해리되…
+                            <time>2023-12-05</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <span>보도자료</span>
+                            [서울국제식품산업대전] 플라스틱 포장재 대체할 ‘종이 연포장재’ 주목
+                            <time>2023-12-05</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <span>보도자료</span>
+                            에이치비페이퍼, 코엑스 푸드위크 2023 참가... 지속가능한 미래 위한 친환경 종이 포장…
+                            <time>2023-11-17</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <span>공지사항</span>
+                            HB PAPER가 FOOD WEEK 2023(2023 서울국제식품산업전)에 참가합니다!
+                            <time>2023-11-08</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <figure>
+                                <img src="img/news_01.jpg" alt="">
+                                <figcaption>
+                                    <span>보도자료</span>
+                                    [서울국제식품산업대전] 플라스틱 포장재 대체할 ‘종이 연포장재’...
+                                </figcaption>
+                            </figure>
+                            
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <figure>
+                                <img src="img/news_02.jpg" alt="">
+                                <figcaption>
+                                    <span>보도자료</span>
+                                    종이식품용기 더블월트레이│사진 제공-에이치비페이퍼친환경 포장재 ...
+                                </figcaption>
+                            </figure>
+                            
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <figure>
+                                <img src="img/news_03.jpg" alt="">
+                                <figcaption>
+                                    <span>공지사항</span>
+                                    안녕하세요, HB PAPER입니다.HB PAPER가 FOOD W...
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block p">
+                            <figure>
+                                <img src="img/news_04.jpg" alt="">
+                                <figcaption>
+                                    <span>공지사항</span>
+                                    안녕하세요, HB PAPER입니다. HB G...
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                </ul>
+                <a href="" class="more">MORE VIEW</a>
+            </div>
+        </section>
+    </main>
+    <!-- 우측슬라이드아이콘 -->
+    <aside>
+        <ul>
+            <li><a href="#title" class="eng">intro</a></li>
+            <li><a href="#promotion">video</a></li>
+            <li><a href="#business">business</a></li>
+            <li><a href="#products">products</a></li>
+            <li><a href="#news">news</a></li>
+        </ul>
+    </aside>
+    <!-- 하단영역 -->
+    <footer>
+        <div class="wrap grid">
+            <h1 class="hide"></h1>
+            <ul class="flex pnb">
+                <li><a href="" class="block">종이 봉투</a></li>
+                <li><a href="" class="block">종이 쇼핑백</a></li>
+                <li><a href="" class="block">종이 안전 봉투</a></li>
+                <li><a href="" class="block">종이 식품 용기</a></li>
+                <li><a href="" class="block">종이 테이프</a></li>
+                <li><a href="" class="block">종이 완충재</a></li>
+                <li><a href="" class="block">특수지</a></li>
+            </ul>
+            <div class="flex">
+                <ul class="flex fnb">
+                    <li><a href="" class="block">회사소개</a></li>
+                    <li><a href="" class="block">사업소개</a></li>
+                    <li><a href="" class="block">찾아오시는 길</a></li>
+                    <li><a href="" class="block">온라인문의</a></li>
+                </ul>
+                <select name="" id="">
+                    <option value="">계열사사이트</option>
+                    <option value="">HB1</option>
+                    <option value="">HB2</option>
+                    <option value="">HB3</option>
+                </select>
+            </div>
+            <a href="" class="blog block">BLOG</a>
+            <address class="p"> 주소 : 충청남도 아산시 음봉면로92(삼거리91-2) TEL : 041-424-1188 E-Mail : admin@hbgroup.kr </address>
+            <p class="p">COPYRIGHTⓒ HB PAPER. ALL RIGHTS RESERVED. ADMIN</p>
+        </div>
+    </footer>
+    
+
+</body>
+</html>

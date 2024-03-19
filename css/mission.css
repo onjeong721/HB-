@@ -1,0 +1,53 @@
+ section#mission{
+  background-color: #009bfa;
+  position: relative;
+  color: white;
+  overflow: hidden;
+ }
+section#mission::before{
+  content: "";
+  width: 900px;
+  height: 900px;
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.1);
+  position: absolute;
+  bottom: -450px;
+  left: calc(50% - 450px);
+}
+ section#mission .wrap{
+  padding-top: 150px;
+  box-sizing: border-box;
+ }
+section#mission .wrap::before{
+  content: "";
+  width: 300px;
+  height: 300px;
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+  position: absolute;
+  bottom: -150px;
+  left: calc(50% - 150px);
+}
+ section#mission .wrap>*{
+ 
+ }
+ section#mission .wrap h2{
+    
+ }
+ section#mission .wrap p{
+ 
+    
+ }
+section#mission::after{
+  content: "";
+  width: 600px;
+  height: 600px;
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.3);
+  position: absolute;
+  bottom: -300px;
+  left: calc(50% - 300px);
+}

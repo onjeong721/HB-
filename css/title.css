@@ -1,0 +1,80 @@
+#title {
+  background-color: #e4e2e2;
+}
+#title .wrap {
+  height: 100%;
+  gap: 15px;
+  max-width: 100%;
+}
+#title .wrap .slick-dots{
+  bottom: 30px;
+}
+#title .wrap .slick-dots li button{
+  position: relative;
+}
+#title .wrap .slick-dots li button::before{
+  color: white;
+  opacity: 1;
+  transition: 0.8s;
+}
+#title .wrap .slick-dots li.slick-active button::before{
+  color: green;
+}
+#title .wrap .slick-dots li.slick-active button::after{
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 2px solid white;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0.7px;
+  opacity: 0.8;
+}
+#title .wrap .slick-list{
+  height: 100%;
+}
+#title .wrap .slick-list .slick-track{
+   height: 100%;
+}
+#title .wrap .witem{
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  transform: scale(1.2);
+  transition: all 1.5s ease-in-out !important;
+}
+#title .wrap .witem.slick-active{
+  transform: scale(1);
+}
+#title .wrap .witem:not(:first-child){
+  /*! display: none; */
+}
+#title .wrap .witem1{
+  background-image: url(../img/title_bg1.jpg);
+  color: white;
+}
+#title .wrap .witem2{
+  background-image: url(../img/title_02.jpg);
+  color: white;
+}
+#title .wrap .witem3{
+  background-image: url(../img/title_04.jpg);
+  color: white;
+}
+#title .wrap h2 {
+  order: 2;
+  font-weight: 800;
+}
+#title .wrap h2 span{
+  display: none;
+}
+#title .wrap p {
+  order: 1;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  line-height: 2;
+}
