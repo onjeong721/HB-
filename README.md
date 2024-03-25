@@ -1,5 +1,5 @@
 # HB PAPER 디자인클론코딩 프로잭트
-<img src="" width="80%" height="auto"/>
+<img src="https://github.com/onjeong721/HBPAPER/assets/150096277/cc2bc2f4-8ed9-4bc7-9fc5-ec2542273b75" width="80%" height="auto"/>
 
 ## 프로젝트 소개
  * 사이트 주소
