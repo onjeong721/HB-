@@ -7,7 +7,8 @@
 <br>
 
 ## 참여
- 이젠 IT아카데미 강사 외 수강생
+ * 이젠 IT아카데미 강사 외 수강생
+<br>
 
 ## 개발환경
 <div display=flex>
@@ -26,13 +27,6 @@
 ## 기간
 2023년 12월 
 <br>
-
-## 개선사항
-
-## 페이지별 기능
-![setProfile](https://github.com/onjeong721/Bworld/assets/150096277/c3b595a4-b118-4d85-a953-4ad54e162ddd)
-![qksdmdgud](https://github.com/onjeong721/Bworld/assets/150096277/ed298d74-caf4-4f0d-8256-037c92a77448)
-## 오류개선
 
 ## 프로젝트 구조
 ```
